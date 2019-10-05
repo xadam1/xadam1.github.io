@@ -5,20 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Home Page</title>
 </head>
 
-<header>
-    <nav>
-        <ul>
-            <li><a href="https://xadam1.github.io/computers/">Home</a></li>
-            <li>Computers</li>
-        </ul>
-    </nav>
-</header>
-
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a id="focusedLink" href="https://xadam1.github.io">Home</a></li>
+                <li><a href="https://xadam1.github.io/computers/">Computers</a></li>
 
+                <script>
+                    document.getElementById('focusedLink').focus();
+                </script>
+
+            </ul>
+        </nav>
+    </header>
 </body>
 
 </html>
