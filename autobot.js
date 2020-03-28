@@ -597,7 +597,8 @@ var Autobot = {
         return variable_1b
     },
     checkPremium: function(variable_1e) {
-        return $(".advisor_frame." + variable_1e + " div")["hasClass"](variable_1e + "_active")
+        return true
+        //return $(".advisor_frame." + variable_1e + " div")["hasClass"](variable_1e + "_active")
     },
     initWindow: function() {
         $(".nui_main_menu")["css"]("top", "282px");
