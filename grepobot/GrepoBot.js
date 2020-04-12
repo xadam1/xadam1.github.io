@@ -2,13 +2,12 @@ var GrepoBot =
 {
     config:
     {
-        activated: true,
+        activated: false,
         claimed: 0,
         debug: true,
         domain: "https://xadam1.github.io/grepo/",
         interval: 0,
         lang: Game.market_id,
-        //libs: "https://ajax.googleapis.com/ajax/libs/",
         timeout: 3000,
         version: "0.2.2"
     },
@@ -474,7 +473,7 @@ var GrepoBot =
                 clearInterval(this.config["interval"]);
                 this.config["interval"] = setInterval(function()
                 {
-                    this.LFoG.claim();
+                    this.GrepoBot.claim();
                 }, getRandom(310000, 360000));
             }
         }
