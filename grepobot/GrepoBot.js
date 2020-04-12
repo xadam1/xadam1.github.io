@@ -226,7 +226,7 @@ var GrepoBot =
         }
 
         this.loadMenuPanel();
-        this.announce(this.message[en].LOADED_SUCCESSFULLY);
+        this.announce(this.message.en.LOADED_SUCCESSFULLY);
     },
 
     loadMenuPanel: function()
@@ -361,7 +361,7 @@ var GrepoBot =
                 })
             }, null);
 
-            this.announce(this.message[en].CAPTAIN_IS_NOT_ACTIVE);
+            this.announce(this.message.en.CAPTAIN_IS_NOT_ACTIVE);
         }
     },
 
@@ -371,7 +371,7 @@ var GrepoBot =
         {
             $("#mp3").trigger("play");
             this.config.activated = false;
-            this.announce(this.message[this.config.lang].CAPTCHA);
+            this.announce(this.message.en.CAPTCHA);
 
             return;
         }
