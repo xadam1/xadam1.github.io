@@ -14,7 +14,7 @@ var LFoG =
         activated: true,
         claimed: 0,
         debug: true,
-        domain: "https://xadam1.github.io/",
+        domain: "https://xadam1.github.io/grepo/",
         interval: 0,
         lang: Game.market_id,
         libs: "https://ajax.googleapis.com/ajax/libs/",
@@ -369,7 +369,7 @@ var LFoG =
                 })
             }, null);
 
-            this.annonce(this.message[this.config.lang].CAPTAIN_IS_NOT_ACTIVE);
+            //this.annonce(this.message[this.config.lang].CAPTAIN_IS_NOT_ACTIVE);
         }
     },
 
