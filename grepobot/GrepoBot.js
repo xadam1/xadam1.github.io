@@ -8,7 +8,7 @@ var GrepoBot =
         domain: "https://xadam1.github.io/grepo/",
         interval: 0,
         lang: Game.market_id,
-        libs: "https://ajax.googleapis.com/ajax/libs/",
+        //libs: "https://ajax.googleapis.com/ajax/libs/",
         timeout: 3000,
         version: "0.2.2"
     },
@@ -193,7 +193,8 @@ var GrepoBot =
         {
             var script = document.createElement("script");
 
-            script.src = this.config["libs"] + "jquery/2.1.1/jquery.min.js";
+            //script.src = this.config["libs"] + "jquery/2.1.1/jquery.min.js";
+            script.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js";
             script.type = "text/javascript";
 
             document.getElementsByTagName("head")[0].appendChild(script);
@@ -203,7 +204,7 @@ var GrepoBot =
         {
             rel: "stylesheet",
             type: "text/css",
-            href: "https://xadam1.github.io/grepo/LFoG.css"
+            href: "https://xadam1.github.io/grepobot/GrepoBot.css"
         }));
 
         this.premium = Game.premium_features;
@@ -225,13 +226,13 @@ var GrepoBot =
         }
 
         this.loadMenuPanel();
-        //this.annonce(this.message[this.config.lang].LOADED_SUCCESSFULLY);
+        this.announce(this.message[this.config.lang].LOADED_SUCCESSFULLY);
     },
 
     loadMenuPanel: function()
     {
-        var off = "LFoG: [ <font color=\"red\"> AUS </font> ]";
-        var on = "LFoG: [ <font color=\"green\"> AN </font> ]";
+        var off = "GrepoBot: [ <font color=\"red\"> OFF </font> ]";
+        var on = "GrepoBot: [ <font color=\"green\"> ON </font> ]";
 
         var self = this;
         $(".ui_quickbar .left").append($("<div>",
@@ -281,7 +282,7 @@ var GrepoBot =
         $(".ui_quickbar .right").append($("<div>",
         {
             class: "lfog"
-        }).html("Powered by Fonduee (LFoG v. " + this.config.version + ")"));
+        }).html("Powered by GrepoBot (v. " + this.config.version + ")"));
     },
 
     loadTowns: function()
@@ -360,7 +361,7 @@ var GrepoBot =
                 })
             }, null);
 
-            //this.annonce(this.message[this.config.lang].CAPTAIN_IS_NOT_ACTIVE);
+            this.announce(this.message[this.config.lang].CAPTAIN_IS_NOT_ACTIVE);
         }
     },
 
@@ -401,13 +402,13 @@ var GrepoBot =
                     self.announce(data.error);
                 }
                 console.log(self,data);
-                //callback(self, data);
+                callback(self, data);
             }
         };
 
         if (!parameters)
         {
-            this.announce("Leerer Request wurde gerade unterbunden");
+            this.announce("Empty request has just been blocked");
             return;
         }
 
@@ -492,12 +493,12 @@ function getRandom(a, b)
 
 setTimeout(function()
 {
-    LFoG.load();
-    if (LFoG.config.activated)
+    GrepoBot.load();
+    if (GrepoBot.config.activated)
     {
-        LFoG.config.interval = setInterval(function()
+        GrepoBot.config.interval = setInterval(function()
         {
-            LFoG.claim();
+            GrepoBot.claim();
         }, getRandom(310000, 360000));
     }
-}, LFoG.config.timeout);
+}, GrepoBot.config.timeout);
