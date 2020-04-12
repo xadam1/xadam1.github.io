@@ -265,7 +265,8 @@ var GrepoBot =
             class: "lfog",
             click: function()
             {
-                Layout.wnd.Create(Layout.wnd.TYPE_FARM_TOWN_OVERVIEWS, "Bauerndörfer");
+                //TODO premium check
+                //Layout.wnd.Create(Layout.wnd.TYPE_FARM_TOWN_OVERVIEWS, "Bauerndörfer");
             }
         }).html("Bauerndörfer"));
 
