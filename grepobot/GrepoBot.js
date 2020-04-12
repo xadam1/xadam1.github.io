@@ -1,13 +1,4 @@
-/**
- * @name Luxury Farmer of Grepolis
- * @author Fonduee aka FewG
- * 
- * @version 0.2.2
- * 
- * @link www.schepsen.eu/grepolis
- */
-
-var LFoG =
+var GrepoBot =
 {
     config:
     {
@@ -26,16 +17,16 @@ var LFoG =
     {
         de:
         {
-            LOADED_SUCCESSFULLY: "LFoG v. 0.2.2 wurde vollständig geladen!",
+            LOADED_SUCCESSFULLY: "GrepoBot v 0.2.2 loaded!",
 
-            CAPTCHA: "Ein CAPTCHA wurde gerade entdeckt, stoppe den Bot",
-            CAPTAIN_IS_NOT_ACTIVE: "\"Kapitän\" ist derzeit nicht aktiviert!",
+            CAPTCHA: "A CAPTCHA has just been discovered, stop the bot.",
+            CAPTAIN_IS_NOT_ACTIVE: "Captain is currently not activated!",
         }
     },
     towns: {},
     premium: {},
 
-    annonce: function(message)
+    announce: function(message)
     {
         if ($(".notice").length == 0)
         {
@@ -49,7 +40,7 @@ var LFoG =
         }
         $(".notice").append($("<p>",
         {
-            text: "LFoG: " + message
+            text: "GrepoBot: " + message
         }).on("click", function()
         {
             this.remove();
@@ -379,7 +370,7 @@ var LFoG =
         {
             $("#mp3").trigger("play");
             this.config.activated = false;
-            this.annonce(this.message[this.config.lang].CAPTCHA);
+            this.announce(this.message[this.config.lang].CAPTCHA);
 
             return;
         }
@@ -398,7 +389,7 @@ var LFoG =
                     }
                     if (data.success)
                     {
-                        self.annonce(data.success);
+                        self.announce(data.success);
                     }
                     callback(self, data, flag);
                 }
@@ -407,7 +398,7 @@ var LFoG =
             {
                 if (data.error)
                 {
-                    self.annonce(data.error);
+                    self.announce(data.error);
                 }
                 console.log(self,data);
                 //callback(self, data);
@@ -416,7 +407,7 @@ var LFoG =
 
         if (!parameters)
         {
-            this.annonce("Leerer Request wurde gerade unterbunden");
+            this.announce("Leerer Request wurde gerade unterbunden");
             return;
         }
 
