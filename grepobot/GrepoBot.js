@@ -193,7 +193,7 @@ var GrepoBot =
             var script = document.createElement("script");
 
             //script.src = this.config["libs"] + "jquery/2.1.1/jquery.min.js";
-            script.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js";
+            script.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
             script.type = "text/javascript";
 
             document.getElementsByTagName("head")[0].appendChild(script);
