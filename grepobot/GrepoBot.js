@@ -15,7 +15,7 @@ var GrepoBot =
 
     message:
     {
-        de:
+        en:
         {
             LOADED_SUCCESSFULLY: "GrepoBot v 0.2.2 loaded!",
 
@@ -226,7 +226,7 @@ var GrepoBot =
         }
 
         this.loadMenuPanel();
-        this.announce(this.message[this.config.lang].LOADED_SUCCESSFULLY);
+        this.announce(this.message[en].LOADED_SUCCESSFULLY);
     },
 
     loadMenuPanel: function()
@@ -361,7 +361,7 @@ var GrepoBot =
                 })
             }, null);
 
-            this.announce(this.message[this.config.lang].CAPTAIN_IS_NOT_ACTIVE);
+            this.announce(this.message[en].CAPTAIN_IS_NOT_ACTIVE);
         }
     },
 
