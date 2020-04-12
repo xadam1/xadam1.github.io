@@ -234,7 +234,7 @@ var LFoG =
         }
 
         this.loadMenuPanel();
-        this.annonce(this.message[this.config.lang].LOADED_SUCCESSFULLY);
+        //this.annonce(this.message[this.config.lang].LOADED_SUCCESSFULLY);
     },
 
     loadMenuPanel: function()
@@ -409,7 +409,8 @@ var LFoG =
                 {
                     self.annonce(data.error);
                 }
-                callback(self, data);
+                console.log(self,data);
+                //callback(self, data);
             }
         };
 
