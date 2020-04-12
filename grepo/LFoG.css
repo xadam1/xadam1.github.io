@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+
+.notice 
+{
+    bottom: 3px;
+    font-family: Candara;
+    font-style: italic;
+    font-size: 14px;
+    text-align: left;
+    left: 10px;
+    position: absolute;
+    z-index: 2001;
+}
+
+.notice p
+{
+    color: #edb;
+    height: 20px;
+    line-height: 20px;
+    margin: 5px 0;
+    padding: 0px 0px 0px 10px;
+}
+
+.ui_quickbar .left, .ui_quickbar .right
+{
+    width: 40% !important;
+}
+
+.lfog
+{
+    color: #ecb44d;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 23px;
+    display: inline-block;
+    white-space: nowrap;
+    width: 23%;
+}
