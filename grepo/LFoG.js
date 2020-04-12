@@ -14,7 +14,7 @@ var LFoG =
         activated: true,
         claimed: 0,
         debug: true,
-        domain: "http://schepsen.eu/grepolis/",
+        domain: "https://xadam1.github.io/",
         interval: 0,
         lang: Game.market_id,
         libs: "https://ajax.googleapis.com/ajax/libs/",
@@ -212,7 +212,7 @@ var LFoG =
         {
             rel: "stylesheet",
             type: "text/css",
-            href: this.config["domain"] + "LFoG.css"
+            href: "https://xadam1.github.io/grepo/LFoG.css"
         }));
 
         this.premium = Game.premium_features;
