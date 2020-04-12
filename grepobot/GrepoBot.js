@@ -181,7 +181,23 @@ var GrepoBot =
 
     isPremiumActive: function(service)
     {
-        return (this.premium.service > Timestamp.now());
+        switch(service)
+        {
+            case "curator":
+                return (this.premium.curator > Timestamp.now());
+
+            case "captain":
+                return (this.premium.captain > Timestamp.now());
+                
+            case "commander":
+                return (this.premium.commander > Timestamp.now());
+            
+            case "priest":
+                    return (this.premium.priest > Timestamp.now());
+
+            case "trader":
+                    return (this.premium.trader > Timestamp.now());
+        }
     },
 
     load: function()
