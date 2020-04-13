@@ -5,18 +5,19 @@ var GrepoBot =
         activated: false,
         claimed: 0,
         debug: true,
-        domain: "https://xadam1.github.io/grepo/",
+        domain: "https://xadam1.github.io/grepobot/",
+        repoDomain: "https://github.com/xadam1/xadam1.github.io/tree/master/grepobot/",
         interval: 0,
         lang: Game.market_id,
         timeout: 3000,
-        version: "0.2.2"
+        version: "1.0.1"
     },
 
     message:
     {
         en:
         {
-            LOADED_SUCCESSFULLY: "GrepoBot v 0.2.2 loaded!",
+            LOADED_SUCCESSFULLY: `GrepoBot v ${config.version} loaded!`,
 
             CAPTCHA: "A CAPTCHA has just been discovered, stop the bot.",
             CAPTAIN_IS_NOT_ACTIVE: "Captain is currently not activated!",
@@ -32,7 +33,7 @@ var GrepoBot =
                 {
                     preload: "auto",
                     id: "mp3",
-                    src: this.config["domain"] + "sound/alert.mp3"
+                    src: this.config.repoDomain + "sound/alert.mp3"
                 }));
         }
         $(".notice").append($("<p>",
@@ -51,6 +52,18 @@ var GrepoBot =
         var self = this, timeoutBetweenTowns = 0;
         jQuery.each(this.towns, function (key, town) {
             if (town.villages.length > 0) {
+                // Checks if tow in full
+                var resources = ITowns.getResources(town.id)
+                var storage = resources.storage;
+
+                var ironMissing = storage - resources.iron;
+                var woodMissing = storage - resources.wood;
+                var stoneMissing = storage - resources.stone;
+
+                if (ironMissing == 0 && woodMissing == 0 && stoneMissing == 0) {
+                    return true;
+                }
+
                 setTimeout(function () {
                     // Gets resources from city
                     /* Looks like this
@@ -67,17 +80,6 @@ var GrepoBot =
                     var iron = storage - resources.iron;
                     var wood = storage - resources.wood;
                     var stone = storage - resources.stone;
-
-                    // old villages system
-                    /*
-                    var json =
-                    {
-                        iron: 0,
-                        town_id: town.id
-                    };
-                    */
-                    
-                    // TODO: CHECK IF FULL, SKIP TOWN
 
                     // sets min to 5% of the storage
                     var min = Math.floor(0.05 * storage);
@@ -96,23 +98,12 @@ var GrepoBot =
                         }
                     }
 
-                    // old villages system
-                    /*
-                    json.wood = (wood < min) ? 2 * min : 0;
-                    json.stone = (stone < min) ? 2 * min : 0;
-
-                    if (json.iron != 0 || json.stone != 0 || json.wood != 0) {
-                        self.sendResources(json);
-                    }
-                    */
-
                     // CAPTAIN ACTIVE
                     if (self.isPremiumActive("captain")) {
                         var json =
                         {
                             farm_town_ids: [],
                             time_option: 300,
-                            //claim_factor: ((ITowns.getTown(town.id).getCastedPower("forced_loyalty")) ? "double" : "normal"),
                             claim_factor: "normal",
                             current_town_id: town.id,
                             town_id: Game.townId
@@ -122,28 +113,10 @@ var GrepoBot =
                             json.farm_town_ids.push(village.id);
                         });
 
-                        // Old Village
-                        /*
-                        var resources = ITowns.getTown(town.id).resources(), wood, stone;
-                        var limit = Math.floor(0.05 * resources.storage);
-
-                        if (resources.storage - resources.iron < limit) {
-                            self.storeIronIntoTheCave(town.id, 2 * limit);
-                        }
-
-                        if ((wood = resources.storage - resources.wood) < limit || (stone = resources.storage - resources.stone) < limit) {
-                            self.sendResources(
-                                {
-                                    town_id: town.id,
-                                    iron: 0,
-                                    stone: ((stone < limit) ? 2 * limit : 0),
-                                    wood: ((wood < limit) ? 2 * limit : 0)
-                                });
-                        }
-                        */
-
                         self.request("farm_town_overviews", "claim_loads", json, "post", function (wnd, response) { });
                     }
+
+                    // CAPTAIN IS NOT ACTIVE
                     else {
                         var timeoutBetweenVillages = 0;
                         jQuery.each(town.villages, function (k, village) {
@@ -151,7 +124,7 @@ var GrepoBot =
                                 var json =
                                 {
                                     target_id: village.id,
-                                    claim_type: ((ITowns.getTown(town.id).getCastedPower("forced_loyalty")) ? "double" : "normal"),
+                                    claim_type: "normal",
                                     time: 300,
                                     town_id: town.id
                                 };
@@ -217,7 +190,7 @@ var GrepoBot =
             {
                 rel: "stylesheet",
                 type: "text/css",
-                href: "https://xadam1.github.io/grepobot/GrepoBot.css"
+                href: this.config.domain + "GrepoBot.css"
             }));
 
         this.premium = Game.premium_features;
@@ -347,14 +320,14 @@ var GrepoBot =
                 {
                     town_id: townId
                 }, "get", function (wnd, response) {
-                jQuery.each(response.farm_towns, function (k, village) {
-                    self.towns[townId].villages.push(
-                        {
-                            id: village.id,
-                            level: -1
-                        });
-                })
-            }, null);
+                    jQuery.each(response.farm_towns, function (k, village) {
+                        self.towns[townId].villages.push(
+                            {
+                                id: village.id,
+                                level: -1
+                            });
+                    })
+                }, null);
 
             this.announce(this.message.en.CAPTAIN_IS_NOT_ACTIVE);
         }
