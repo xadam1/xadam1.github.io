@@ -148,7 +148,7 @@ var GrepoBot =
                                 };
                                 self.request("farm_town_info", "claim_load", json, "post", function(wnd, response)
                                 {
-                                    if (response.error == "Dieses Bauerndorf gehört dir nicht.")
+                                    if (response.error == "You dont own this farm town.")
                                     {
                                         var index = self.towns[town.id].villages.map(function(obj)
                                         {
@@ -208,7 +208,6 @@ var GrepoBot =
         {
             var script = document.createElement("script");
 
-            //script.src = this.config["libs"] + "jquery/2.1.1/jquery.min.js";
             script.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js";
             script.type = "text/javascript";
 
@@ -246,8 +245,8 @@ var GrepoBot =
 
     loadMenuPanel: function()
     {
-        var off = "GrepoBot: [ <font color=\"red\"> OFF </font> ]";
-        var on = "GrepoBot: [ <font color=\"green\"> ON </font> ]";
+        var off = "AutoFarm: [ <font color=\"red\"> OFF </font> ]";
+        var on = "AutoFarm: [ <font color=\"green\"> ON </font> ]";
 
         var self = this;
         $(".ui_quickbar .left").append($("<div>",
@@ -281,10 +280,10 @@ var GrepoBot =
             class: "lfog",
             click: function()
             {
-                //TODO premium check
-                //Layout.wnd.Create(Layout.wnd.TYPE_FARM_TOWN_OVERVIEWS, "Bauerndörfer");
+                // TODO PREMIUM CHECK
+                Layout.wnd.Create(Layout.wnd.TYPE_FARM_TOWN_OVERVIEWS, "FarmTowns");
             }
-        }).html("Bauerndörfer"));
+        }).html("FarmTowns"));
 
         $(".ui_quickbar .left").append($("<div>",
         {
