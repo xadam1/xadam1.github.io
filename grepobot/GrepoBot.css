@@ -2,10 +2,10 @@
 
 .notice 
 {
-    bottom: 3px;
+    bottom: 40px;
     font-family: Candara;
     font-style: italic;
-    font-size: 14px;
+    font-size: 17px;
     text-align: left;
     left: 10px;
     position: absolute;
@@ -14,7 +14,7 @@
 
 .notice p
 {
-    color: #edb;
+    color: #000;
     height: 20px;
     line-height: 20px;
     margin: 5px 0;
